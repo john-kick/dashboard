@@ -3,8 +3,9 @@ import Image from "next/image";
 const CARD_WIDTH = 40;
 
 type CardProps = {
-  title: string;
+  name: string;
   url: string;
+  iconLink?: string;
 };
 
 function getIconURL(url: string): string {
@@ -12,20 +13,20 @@ function getIconURL(url: string): string {
   return `https://www.google.com/s2/favicons?domain=${domain}&sz=${CARD_WIDTH}`;
 }
 
-export default function Card({ title, url }: CardProps) {
+export default function Card({ name, url, iconLink }: CardProps) {
   return (
     <a href={url}>
       <div className="p-1 flex flex-col justify-center items-center">
         <div className="bg-slate-700 shadow shadow-black w-15 h-15 rounded-xl flex items-center justify-center mb-2">
           <Image
             alt="Logo"
-            src={getIconURL(url)}
+            src={getIconURL(iconLink ?? url)}
             width={CARD_WIDTH}
             height={CARD_WIDTH}
             className="flex-none"
           />
         </div>
-        <h4>{title}</h4>
+        <h4>{name}</h4>
       </div>
     </a>
   );

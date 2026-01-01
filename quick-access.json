@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Tidal",
+    "url": "https://tidal.com"
+  },
+  {
+    "name": "YouTube",
+    "url": "https://youtube.com"
+  },
+  {
+    "name": "Twitch",
+    "url": "https://twitch.tv"
+  },
+  {
+    "name": "Vaultwarden",
+    "url": "https://vaultwarden.server-kicker.de",
+    "iconLink": "https://bitwarden.com/"
+  },
+  {
+    "name": "SK Auth",
+    "url": "https://auth.server-kicker.de"
+  }
+]
