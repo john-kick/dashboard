@@ -1,12 +1,6 @@
 import Card from "./Card";
 import quickLinks from "../../quick-access.json";
 
-type QuickLink = {
-  name: string;
-  url: string;
-  iconLink?: string;
-};
-
 export default function Dashboard() {
   return (
     <div className="flex justify-center">
