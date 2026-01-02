@@ -5,7 +5,7 @@ import quickLinks from "@data/quicklinks.json";
 export default function Dashboard() {
   return (
     <div className="flex justify-center">
-      <div className="flex gap-12 max-w-4xl m-3 p-3 w-3/4 ">
+      <div className="flex flex-wrap gap-12 max-w-4xl m-3 p-3 w-3/4 ">
         {/* Quick links */}
         {quickLinks.map(({ name, url, iconLink }, index) => (
           <QuickLink key={index} name={name} url={url} iconLink={iconLink} />
