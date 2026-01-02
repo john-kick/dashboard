@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const ICON_WIDTH = 40;
+export const ICON_WIDTH = 40;
 
 type CardProps = {
   name: string;
@@ -13,7 +13,7 @@ function getIconURL(url: string): string {
   return `https://www.google.com/s2/favicons?domain=${domain}&sz=${ICON_WIDTH}`;
 }
 
-export default function Card({ name, url, iconLink }: CardProps) {
+export default function QuickLink({ name, url, iconLink }: CardProps) {
   return (
     <a href={url}>
       <div className="p-1 flex flex-col justify-center items-center w-20">
