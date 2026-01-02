@@ -1,19 +1,20 @@
 import AddQuickLink from "./AddQuickLink";
 import QuickLink from "./QuickLink";
 import quickLinks from "@data/quicklinks.json";
+import DashboardSection from "./DashboardSection";
 
 export default function Dashboard() {
   return (
-    <div className="flex justify-center">
-      <div className="flex flex-wrap gap-12 max-w-4xl m-3 p-3 w-3/4 ">
-        {/* Quick links */}
+    <div className="flex-col divide-y-4 divide-slate-700 divide-solid divide- w-3/4">
+      {/* Quick links */}
+      <DashboardSection title="Quick links">
         {quickLinks.map(({ name, url, iconLink }, index) => (
           <QuickLink key={index} name={name} url={url} iconLink={iconLink} />
         ))}
 
         {/* Add quick link button */}
         <AddQuickLink />
-      </div>
+      </DashboardSection>
     </div>
   );
 }
