@@ -1,27 +1,41 @@
-[
-  {
-    "name": "Tidal",
-    "url": "https://tidal.com"
-  },
-  {
-    "name": "FritzBox",
-    "url": "http://fritz.box"
-  },
-  {
-    "name": "YouTube",
-    "url": "https://youtube.com"
-  },
-  {
-    "name": "Twitch",
-    "url": "https://twitch.tv"
-  },
-  {
-    "name": "Vaultwarden",
-    "url": "https://vaultwarden.server-kicker.de",
-    "iconLink": "https://bitwarden.com/"
-  },
-  {
-    "name": "SK Auth",
-    "url": "https://auth.server-kicker.de"
-  }
-]
+{
+    "auto_increment": 9,
+    "data": [
+        {
+            "id": 1,
+            "name": "Tidal",
+            "url": "https://tidal.com"
+        },
+        {
+            "id": 2,
+            "name": "FritzBox",
+            "url": "http://fritz.box"
+        },
+        {
+            "id": 3,
+            "name": "YouTube",
+            "url": "https://youtube.com"
+        },
+        {
+            "id": 4,
+            "name": "Twitch",
+            "url": "https://twitch.tv"
+        },
+        {
+            "id": 5,
+            "name": "Vaultwarden",
+            "url": "https://vaultwarden.server-kicker.de",
+            "iconLink": "https://bitwarden.com/"
+        },
+        {
+            "id": 6,
+            "name": "SK Auth",
+            "url": "https://auth.server-kicker.de"
+        },
+        {
+            "id": 8,
+            "name": "Google",
+            "url": "https://www.google.de"
+        }
+    ]
+}

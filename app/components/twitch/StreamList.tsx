@@ -14,7 +14,7 @@ export default function StreamList() {
   }, []);
 
   return (
-    <div className="flex flex-row gap-12 overflow-scroll p-5">
+    <>
       {streams.length > 0 ? (
         streams.map(
           ({ id, user_name, user_id, thumbnail_url, title, game_name }) => (
@@ -31,6 +31,6 @@ export default function StreamList() {
       ) : (
         <span>Loading...</span>
       )}
-    </div>
+    </>
   );
 }

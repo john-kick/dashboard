@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { FormEventHandler, useState } from "react";
 import Image from "next/image";
 import { ICON_WIDTH } from "./QuickLink";
 import Input from "./Input";
@@ -14,7 +14,7 @@ export default function AddQuickLink() {
   return (
     <>
       <button onClick={handleOpen} className="cursor-pointer">
-        <div className="p-1 flex flex-col justify-center items-center w-20">
+        <div className="p-1 flex flex-col justify-center items-center w-20 transform transition hover:scale-105">
           <div className="bg-slate-700/25 shadow shadow-black w-15 h-15 rounded-xl flex items-center justify-center mb-2">
             <Image
               src="plus.svg"
@@ -37,8 +37,23 @@ type ModalProps = {
 };
 
 function Modal({ onClose }: ModalProps) {
-  const handleSubmit = () => {
-    // Load file content
+  const [name, setName] = useState("");
+  const [url, setUrl] = useState("");
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
+    fetch("/api/quicklink", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        url,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => console.log(res));
   };
 
   return (
@@ -47,9 +62,19 @@ function Modal({ onClose }: ModalProps) {
         <div className="mb-4">
           <h3 className="text-2xl">Add a Quicklink</h3>
         </div>
-        <form className="flex flex-col gap-3 mb-3">
-          <Input title="Name" name="name" placeholder="e.g. Google" />
-          <Input title="URL" name="url" placeholder="e.g. www.google.com" />
+        <form className="flex flex-col gap-3 mb-3" onSubmit={handleSubmit}>
+          <Input
+            title="Name"
+            name="name"
+            placeholder="e.g. Google"
+            onChange={(event) => setName(event.target.value)}
+          />
+          <Input
+            title="URL"
+            name="url"
+            placeholder="e.g. www.google.com"
+            onChange={(event) => setUrl(event.target.value)}
+          />
           <div>
             <div className="flex gap-3 float-end">
               <button

@@ -10,7 +10,9 @@ export default function DashboardSection({
   return (
     <div className="flex flex-col items-center p-3 m-3">
       <h2 className="text-3xl mb-4">{title}</h2>
-      <div className="flex flex-wrap gap-12 mb-4 w-full">{children}</div>
+      <div className="flex flex-wrap gap-12 mb-4 w-full justify-center">
+        {children}
+      </div>
     </div>
   );
 }

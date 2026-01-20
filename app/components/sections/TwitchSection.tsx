@@ -3,9 +3,9 @@
 import { useSession } from "next-auth/react";
 import SignIn from "../auth/SignIn";
 import SignOut from "../auth/SignOut";
-import UserAvatar from "../twitch/UserAvatar";
 import DashboardSection from "./DashboardSection";
 import StreamList from "../twitch/StreamList";
+import User from "../twitch/User";
 
 export default function TwitchSection(): React.JSX.Element {
   const { data: session } = useSession();
@@ -13,11 +13,11 @@ export default function TwitchSection(): React.JSX.Element {
   return (
     <DashboardSection title={"Twitch"}>
       {session ? (
-        <>
-          {/*<UserAvatar />*/}
+        <div className="flex flex-col w-full">
+          <User />
           <StreamList />
           <SignOut />
-        </>
+        </div>
       ) : (
         <SignIn />
       )}
