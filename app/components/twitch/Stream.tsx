@@ -19,7 +19,7 @@ export default function Stream({
   title,
   thumbnail,
   game,
-}: StreamProps): Promise<React.JSX.Element> {
+}: StreamProps): React.JSX.Element {
   const [profilePicture, setProfilePicture] = useState<string | undefined>();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function Stream({
       .then((res) => {
         setProfilePicture(res);
       });
-  }, []);
+  }, [user_id]);
 
   const thumbnailUrl = thumbnail
     .replace("{width}", String(THUMBNAIL_WIDTH))
