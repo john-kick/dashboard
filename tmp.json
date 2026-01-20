@@ -1,0 +1,13 @@
+{
+  "issuer": "https://id.twitch.tv/oauth2",
+  "id": "twitch",
+  "name": "Twitch",
+  "type": "oidc",
+  "client": { "token_endpoint_auth_method": "client_secret_post" },
+  "authorization": {
+    "params": { "scope": "openid user:read:email", "claims": ["Object"] }
+  },
+  "token": { "conform": { "AsyncFunction": "conform" } },
+  "style": { "bg": "#65459B", "text": "#fff" },
+  "options": {}
+}
