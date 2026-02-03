@@ -17,12 +17,20 @@ export default function QuickLinkSection(): React.JSX.Element {
 
   return (
     <DashboardSection title="Quick links">
-      {quicklinks.map(({ id, name, url, iconLink }) => (
-        <QuickLink key={id} id={id} name={name} url={url} iconLink={iconLink} />
-      ))}
+      <div className="flex justify-center gap-5">
+        {quicklinks.map(({ id, name, url, iconLink }) => (
+          <QuickLink
+            key={id}
+            id={id}
+            name={name}
+            url={url}
+            iconLink={iconLink}
+          />
+        ))}
 
-      {/* Add quick link button */}
-      <AddQuickLink />
+        {/* Add quick link button */}
+        <AddQuickLink />
+      </div>
     </DashboardSection>
   );
 }
