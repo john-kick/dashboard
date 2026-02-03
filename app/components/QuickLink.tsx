@@ -9,6 +9,8 @@ type CardProps = {
   name: string;
   url: string;
   iconLink?: string;
+  editMode: boolean;
+  onDelete: (id: number) => void;
 };
 
 function getIconURL(url: string): string {
@@ -16,36 +18,46 @@ function getIconURL(url: string): string {
   return `https://www.google.com/s2/favicons?domain=${domain}&sz=${ICON_WIDTH}`;
 }
 
-export default function QuickLink({ id, name, url, iconLink }: CardProps) {
+export default function QuickLink({
+  id,
+  name,
+  url,
+  iconLink,
+  editMode,
+  onDelete,
+}: CardProps) {
   const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.stopPropagation();
-    fetch(`/api/quicklink/${id}`, { method: "DELETE" })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
+    event.preventDefault(); // prevents link navigation
+    onDelete(id);
   };
 
   return (
     <div className="relative inline-block">
       <Link href={url}>
-        <div className="p-1 flex flex-col justify-center items-center w-20 transform transition hover:scale-105">
-          <div className="bg-slate-700 shadow shadow-black w-15 h-15 rounded-xl flex items-center justify-center mb-2">
+        <div className="flex w-20 flex-col items-center p-1 transition hover:scale-105">
+          <div className="mb-2 flex h-15 w-15 items-center justify-center rounded-xl bg-slate-700 shadow shadow-black">
             <Image
               alt="Logo"
               src={getIconURL(iconLink ?? url)}
               width={ICON_WIDTH}
               height={ICON_WIDTH}
-              className="flex-none"
             />
           </div>
-          <h4 className="text-ellipsis overflow-hidden max-w-30">{name}</h4>
+          <h4 className="max-w-30 overflow-hidden text-ellipsis whitespace-nowrap">
+            {name}
+          </h4>
         </div>
       </Link>
-      <button
-        onClick={handleClick}
-        className="flex justify-center rounded-full bg-amber-700 w-6 h-6 cursor-pointer transform transition hover:scale-120 absolute top-0 right-0 shadow"
-      >
-        <Image src="trash.svg" width={20} height={20} alt="Trash" />
-      </button>
+
+      {editMode && (
+        <button
+          onClick={handleClick}
+          className="absolute right-0 top-0 flex h-6 w-6 items-center justify-center rounded-full bg-amber-700 shadow transition hover:scale-110"
+        >
+          <Image src="/trash.svg" width={16} height={16} alt="Delete" />
+        </button>
+      )}
     </div>
   );
 }

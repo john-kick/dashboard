@@ -1,5 +1,5 @@
 {
-    "auto_increment": 9,
+    "auto_increment": 22,
     "data": [
         {
             "id": 1,
@@ -12,30 +12,25 @@
             "url": "http://fritz.box"
         },
         {
-            "id": 3,
-            "name": "YouTube",
-            "url": "https://youtube.com"
-        },
-        {
             "id": 4,
             "name": "Twitch",
             "url": "https://twitch.tv"
         },
         {
-            "id": 5,
+            "id": 9,
             "name": "Vaultwarden",
             "url": "https://vaultwarden.server-kicker.de",
-            "iconLink": "https://bitwarden.com/"
+            "iconLink": "https://www.vaultwarden.net/"
         },
         {
-            "id": 6,
-            "name": "SK Auth",
-            "url": "https://auth.server-kicker.de"
+            "id": 20,
+            "name": "Youtube",
+            "url": "https://youtube.com"
         },
         {
-            "id": 8,
-            "name": "Google",
-            "url": "https://www.google.de"
+            "id": 21,
+            "name": "ChatGPT",
+            "url": "https://chat.openai.com"
         }
     ]
 }

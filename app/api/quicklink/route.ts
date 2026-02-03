@@ -15,6 +15,9 @@ export async function GET(request: NextRequest) {
   return Response.json(config.data);
 }
 
+/**
+ * Creates a new quicklink and responds with the new quicklink data as the body
+ */
 export async function POST(request: NextRequest) {
   if (!request.body) {
     return new Response("No body found", { status: 400 });
@@ -24,9 +27,10 @@ export async function POST(request: NextRequest) {
 
   const content = await read(QUICKLINKS_PATH);
   const config = JSON.parse(content) as QuickLinkConfig;
-  config.data.push({ id: config.auto_increment++, name, url });
+  const newQuickLink = { id: config.auto_increment++, name, url };
+  config.data.push(newQuickLink);
 
   write(QUICKLINKS_PATH, JSON.stringify(config, null, 4));
 
-  return Response.json(config, { status: 200 });
+  return Response.json(newQuickLink, { status: 200 });
 }

@@ -1,19 +1,21 @@
 "use client";
-import { FormEventHandler, useState } from "react";
 import Image from "next/image";
-import { ICON_WIDTH } from "./QuickLink";
+import { FormEventHandler, useState } from "react";
 import Input from "./Input";
+import { ICON_WIDTH } from "./QuickLink";
+import { createPortal } from "react-dom";
+import { QuickLink as QuickLinkType } from "@types/core";
 
-export default function AddQuickLink() {
+type AddQuickLinkProps = {
+  onCreateAction: (link: QuickLinkType) => void;
+};
+
+export default function AddQuickLink({ onCreateAction }: AddQuickLinkProps) {
   const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpen = () => {
-    setIsOpen(true);
-  };
 
   return (
     <>
-      <button onClick={handleOpen} className="cursor-pointer">
+      <button onClick={() => setIsOpen(true)} className="cursor-pointer">
         <div className="p-1 flex flex-col justify-center items-center w-20 transform transition hover:scale-105">
           <div className="bg-slate-700/25 shadow shadow-black w-15 h-15 rounded-xl flex items-center justify-center mb-2">
             <Image
@@ -27,37 +29,45 @@ export default function AddQuickLink() {
         </div>
       </button>
 
-      {isOpen && <Modal onClose={() => setIsOpen(false)} />}
+      {isOpen &&
+        createPortal(
+          <Modal
+            onClose={() => setIsOpen(false)}
+            onCreate={(link) => {
+              onCreateAction(link);
+              setIsOpen(false);
+            }}
+          />,
+          document.getElementById("modal-root")!,
+        )}
     </>
   );
 }
 
 type ModalProps = {
   onClose: () => void;
+  onCreate: (link: QuickLinkType) => void;
 };
 
-function Modal({ onClose }: ModalProps) {
+function Modal({ onClose, onCreate }: ModalProps) {
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
-    fetch("/api/quicklink", {
+
+    const res = await fetch("/api/quicklink", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        url,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, url }),
+    });
+
+    const created = await res.json();
+    onCreate(created);
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div className="bg-slate-700 p-4 rounded">
         <div className="mb-4">
           <h3 className="text-2xl">Add a Quicklink</h3>
@@ -85,7 +95,6 @@ function Modal({ onClose }: ModalProps) {
                 Cancel
               </button>
               <button
-                onClick={handleSubmit}
                 className="cursor-pointer px-2 py-1.5 rounded bg-green-700"
                 type="submit"
               >
