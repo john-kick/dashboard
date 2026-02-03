@@ -35,15 +35,15 @@ export default function Stream({
     .replace("{height}", String(THUMBNAIL_HEIGHT));
 
   return (
-    <div className="transform transition w-72 flex-none hover:scale-105">
-      <h5
-        className="overflow-hidden text-nowrap text-ellipsis mb-2 font-bold"
-        title={title}
-      >
-        {title}
-      </h5>
-      <span className="">{game}</span>
-      <Link href={`https://www.twitch.tv/${user_name}`}>
+    <Link href={`https://www.twitch.tv/${user_name}`}>
+      <div className="transform transition w-72 flex-none hover:scale-105">
+        <h5
+          className="overflow-hidden text-nowrap text-ellipsis mb-2 font-bold"
+          title={title}
+        >
+          {title}
+        </h5>
+        <span className="">{game}</span>
         <Image
           src={thumbnailUrl}
           alt="Stream preview"
@@ -51,21 +51,21 @@ export default function Stream({
           height={THUMBNAIL_HEIGHT}
           className="rounded-xl mt-2 mb-2 border-purple-600 border-2 shadow-purple-900 shadow-lg cursor-pointer"
         />
-      </Link>
-      <div className="inline-flex items-center">
-        {profilePicture ? (
-          <Image
-            src={profilePicture}
-            width={40}
-            height={40}
-            alt="Profile logo"
-            className="rounded-full mr-2"
-          />
-        ) : (
-          <></>
-        )}
-        <span className="">{user_name}</span>
+        <div className="inline-flex items-center">
+          {profilePicture ? (
+            <Image
+              src={profilePicture}
+              width={40}
+              height={40}
+              alt="Profile logo"
+              className="rounded-full mr-2"
+            />
+          ) : (
+            <></>
+          )}
+          <span className="">{user_name}</span>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
