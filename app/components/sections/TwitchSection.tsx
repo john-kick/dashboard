@@ -11,12 +11,15 @@ export default function TwitchSection(): React.JSX.Element {
   const { data: session } = useSession();
 
   return (
-    <DashboardSection title={"Twitch"}>
+    <DashboardSection title="Twitch">
       {session ? (
-        <div className="flex flex-col w-full">
-          <User />
+        <div className="flex flex-col gap-6">
+          <div className="flex items-center justify-between">
+            <User />
+            <SignOut />
+          </div>
+
           <StreamList />
-          <SignOut />
         </div>
       ) : (
         <SignIn />

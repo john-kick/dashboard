@@ -8,11 +8,9 @@ export default function DashboardSection({
   children,
 }: DashboardSectionProps): React.JSX.Element {
   return (
-    <div className="flex flex-col items-center p-3 m-3">
-      <h2 className="text-3xl mb-4">{title}</h2>
-      <div className="flex flex-wrap gap-12 mb-4 w-full justify-center">
-        {children}
-      </div>
-    </div>
+    <section className="w-full max-w-7xl px-4 py-6 mx-auto">
+      <h2 className="mb-6 text-3xl font-semibold">{title}</h2>
+      {children}
+    </section>
   );
 }
