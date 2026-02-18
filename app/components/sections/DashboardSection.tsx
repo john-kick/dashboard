@@ -1,5 +1,5 @@
 type DashboardSectionProps = {
-  title: string;
+  title?: string;
   children?: React.ReactNode;
 };
 
@@ -9,7 +9,7 @@ export default function DashboardSection({
 }: DashboardSectionProps): React.JSX.Element {
   return (
     <section className="w-full max-w-7xl px-4 py-6 mx-auto">
-      <h2 className="mb-6 text-3xl font-semibold">{title}</h2>
+      {title && <h2 className="mb-6 text-3xl font-semibold">{title}</h2>}
       {children}
     </section>
   );
